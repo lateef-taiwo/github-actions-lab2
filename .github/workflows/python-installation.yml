@@ -3,7 +3,7 @@ name: Installing Python
   - push
 jobs:
   build:
-    runs-on: '${{ matrix.os }}'
+    runs-on: '${{ matrix.os }}'  #configure matrix
     strategy:
       matrix:
         os:
@@ -14,6 +14,10 @@ jobs:
           - 3.7
           - 3.8
           - 3.9
+        #Configure matrix strategy to exclude below combinations:
+        # os: macos-latest
+        # py-version: 3.9
+
         exclude:
           - os: macos-latest
             py-version: 3.9
@@ -22,7 +26,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '${{ matrix.py-version }}'
+          python-version: '${{ matrix.py-version }}'  # set step to run using python version specified in matrix operating systems os
 
 # name: Installing Python
 # on: [push]
